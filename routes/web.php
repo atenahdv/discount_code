@@ -18,4 +18,5 @@ Route::get('/', function () {
 });
 Route::prefix('administrator')->group(function (){
     Route::get('/','App\Http\Controllers\Backend\MainController@mainpage');
+    Route::resource('discounts','App\Http\Controllers\Backend\DiscountController');
 });
