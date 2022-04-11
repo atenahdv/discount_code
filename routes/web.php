@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::prefix('administrator')->group(function (){
+    Route::get('/','App\Http\Controllers\Backend\MainController@mainpage');
+});
