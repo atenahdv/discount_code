@@ -86,7 +86,8 @@ class DiscountController extends Controller
      */
     public function edit($id)
     {
-        //
+        $discount=Discount::findorfail($id);
+        return view('admin.discounts.edit',compact(['discount']));
     }
 
     /**
@@ -96,9 +97,15 @@ class DiscountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateDiscountRequest $request, $id)
     {
-        //
+        $discount=Discount::findorfail($id);
+        $discount->title=$request->title;
+        $discount->type=$request->type;
+        $discount->amount=$request->amount;
+        $discount->save();
+        Session::flash('success',' کد تخفیف '. $discount->title .' با موفقیت ویرایش شد ');
+        return redirect('/administrator/discounts');
     }
 
     /**
@@ -109,6 +116,9 @@ class DiscountController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $discount=Discount::findorfail($id);
+        Session::flash('success',' کد تخفیف  ' . $discount->title .' با موفقیت حذف شد ');
+        $discount->delete();
+        return redirect('/administrator/discounts');
     }
 }

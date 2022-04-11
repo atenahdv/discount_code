@@ -26,6 +26,7 @@
                     <tr>
                         <th class="text-center">کد تخفیف</th>
                         <th class="text-center">عنوان</th>
+                        <th class="text-center">وضعیت کد تخفیف</th>
                         <th class="text-center">عملیات</th>
                     </tr>
                     </thead>
@@ -35,8 +36,22 @@
                         <td class="text-center">{{$discount->code}}</td>
                         <td class="text-center">{{$discount->title}}</td>
                         <td class="text-center">
+                            @if($discount->status==1)
+                                استفاده نشده
+                            @else
+                                استفاده شده
+                            @endif
+
+                        </td>
+                        <td class="text-center">
                             <a href="{{route('discounts.edit',$discount->id)}}" class="btn btn-warning">ویرایش</a>
-                            <a href="{{route('discounts.destroy', $discount->id)}}" class="btn btn-danger" onclick="return confirm('آیا از حذف کد تخفیف مطمعئن هستید؟')">حذف</a>
+                            @if($discount->status==1)
+                                <form action="{{route('discounts.destroy' , $discount->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" >حذف</button>
+                                </form>
+                       @endif
                         </td>
 
                     </tr>
