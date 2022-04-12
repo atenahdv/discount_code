@@ -25,8 +25,8 @@
                     <div class="form-group">
                       <select id="type" name="type" class="form-control">
                           <option></option>
-                          <option value="1">قیمت (ریال)</option>
-                          <option value="0">درصد</option>
+                          <option value="1">ثابت (ریال)</option>
+                          <option value="0">متغیر (درصد)</option>
                       </select>
                         @error('type')
                         <div class="text-danger">{{ $message }}</div>

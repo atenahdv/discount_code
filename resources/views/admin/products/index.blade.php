@@ -7,7 +7,7 @@
         <div class="card-header border-transparent col-md-12">
 
             <div class="box-tools pull-left">
-            <a class="btn btn-app" href="{{route('discounts.create')}}">
+            <a class="btn btn-app" href="{{route('products.create')}}">
                 <i class="fa fa-plus"></i>  جدید
             </a>
             </div>
@@ -24,39 +24,40 @@
                         {{session('warning')}}
                     </div>
                 @endif
-            <h3 class="card-title"> کدهای تخفیف  </h3>
+            <h3 class="card-title">  لیست محصولات  </h3>
             <div class="table-responsive rtl">
                 <table class="table m-0">
                     <thead>
                     <tr>
-                        <th class="text-center">کد تخفیف</th>
+                        <th class="text-center">شناسه </th>
                         <th class="text-center">عنوان</th>
-                        <th class="text-center">وضعیت کد تخفیف</th>
+                        <th class="text-center">قیمت (ریال)</th>
+                        <th class="text-center">وضعیت نمایش محصول </th>
                         <th class="text-center">عملیات</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($discounts as $discount)
+                    @foreach($products as $product)
                     <tr>
-                        <td class="text-center">{{$discount->code}}</td>
-                        <td class="text-center">{{$discount->title}}</td>
+                        <td class="text-center">{{$product->id}}</td>
+                        <td class="text-center">{{$product->title}}</td>
+                        <td class="text-center">{{$product->price}} ریال</td>
                         <td class="text-center">
-                            @if($discount->status==1)
-                                استفاده نشده
+                            @if($product->status==1)
+                               فعال
                             @else
-                                استفاده شده
+                                غیرفعال
                             @endif
 
                         </td>
                         <td class="text-center">
-                            <a href="{{route('discounts.edit',$discount->id)}}" class="btn btn-warning">ویرایش</a>
-                            @if($discount->status==1)
-                                <form action="{{route('discounts.destroy' , $discount->id)}}" method="POST">
+                            <a href="{{route('products.edit',$product->id)}}" class="btn btn-warning">ویرایش</a>
+
+                                <form action="{{route('products.destroy' , $product->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger" >حذف</button>
                                 </form>
-                       @endif
                         </td>
 
                     </tr>

@@ -343,8 +343,24 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{route('discounts.index')}}"><i class="fa fa-circle-o"></i> لیست کدهای تحفیف</a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> کد تخفیف جدید </a></li>
+                        <li><a href="{{route('discounts.create')}}"><i class="fa fa-circle-o"></i> کد تخفیف جدید </a></li>
                     </ul>
+
+
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-pie-chart"></i>
+                        <span> مدیریت  محصولات</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{route('products.index')}}"><i class="fa fa-circle-o"></i> لیست محصولات</a></li>
+                        <li><a href="{{route('products.create')}}"><i class="fa fa-circle-o"></i> محصول جدید </a></li>
+                    </ul>
+
+
                 </li>
 
             </ul>

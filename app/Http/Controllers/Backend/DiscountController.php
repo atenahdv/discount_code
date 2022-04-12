@@ -103,8 +103,11 @@ class DiscountController extends Controller
         $discount->title=$request->title;
         $discount->type=$request->type;
         $discount->amount=$request->amount;
-        $discount->save();
-        Session::flash('success',' کد تخفیف '. $discount->title .' با موفقیت ویرایش شد ');
+        if($discount->status==1){
+            $discount->save();
+            Session::flash('success',' کد تخفیف '. $discount->title .' با موفقیت ویرایش شد ');
+        }else
+            Session::flash('warning','امکان ویرایش کد تخفیف '. $discount->title .' به دلیل استفاده وجود ندارد ');
         return redirect('/administrator/discounts');
     }
 

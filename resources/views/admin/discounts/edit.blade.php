@@ -32,8 +32,8 @@
                         <div class="form-group">
                             <select id="type" name="type" class="form-control">
                                 <option></option>
-                                <option value="1" @if($discount->type==1) selected @endif>قیمت (ریال)</option>
-                                <option value="0" @if($discount->type==0) selected @endif>درصد</option>
+                                <option value="1" @if($discount->type==1) selected @endif>ثابت (ریال)</option>
+                                <option value="0" @if($discount->type==0) selected @endif>متفیر(درصد) </option>
                             </select>
                             @error('type')
                             <div class="text-danger">{{ $message }}</div>
@@ -47,8 +47,12 @@
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                        @if($discount->status==1)
                         <button type="submit" class=" pull-left btn btn-success">ویرایش</button>
+                            @else
+                            <a  class="pull-left btn btn-warning">امکان ویرایش کد تخفیف به دلیل استفاده وجود ندارد</a>
 
+                            @endif
                     </form>
 
                 </div>
